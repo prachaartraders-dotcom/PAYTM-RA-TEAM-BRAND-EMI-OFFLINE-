@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paytm RA Team Dashboard</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f8fb;
+      color:#111;
+    }
+
+    .header{
+      background:#002970;
+      color:white;
+      padding:20px;
+      text-align:center;
+      font-size:32px;
+      font-weight:bold;
+    }
+
+    .top-cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      padding:25px;
+    }
+
+    .card{
+      background:white;
+      padding:25px;
+      border-radius:15px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .card h2{
+      color:#666;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+
+    .card p{
+      font-size:38px;
+      font-weight:bold;
+    }
+
+    .months{
+      padding:25px;
+    }
+
+    .months h1{
+      margin-bottom:20px;
+      color:#002970;
+    }
+
+    .month-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:20px;
+    }
+
+    .month-btn{
+      background:white;
+      padding:30px;
+      border-radius:15px;
+      text-align:center;
+      font-size:22px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .month-btn:hover{
+      transform:scale(1.05);
+      background:#00baf2;
+      color:white;
+    }
+
+    .brand-section{
+      display:none;
+      padding:25px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:white;
+      border-radius:15px;
+      overflow:hidden;
+    }
+
+    th{
+      background:#002970;
+      color:white;
+      padding:18px;
+    }
+
+    td{
+      padding:18px;
+      text-align:center;
+      border-bottom:1px solid #ddd;
+    }
+
+    .brand-name{
+      font-weight:bold;
+      text-align:left;
+    }
+
+    .status-btn{
+      padding:10px 18px;
+      border:none;
+      border-radius:10px;
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .green{
+      background:green;
+    }
+
+    .red{
+      background:red;
+    }
+
+    .gray{
+      background:gray;
+    }
+
+    .popup{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.5);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:1000;
+    }
+
+    .popup-content{
+      background:white;
+      width:90%;
+      max-width:700px;
+      padding:30px;
+      border-radius:20px;
+    }
+
+    .popup-content h2{
+      margin-bottom:20px;
+      color:#002970;
+    }
+
+    .section{
+      margin-bottom:25px;
+      padding:20px;
+      background:#f4f8fb;
+      border-radius:15px;
+    }
+
+    select, textarea{
+      width:100%;
+      padding:12px;
+      margin-top:12px;
+      border-radius:10px;
+      border:1px solid #ccc;
+    }
+
+    textarea{
+      height:120px;
+      resize:none;
+    }
+
+    .buttons{
+      display:flex;
+      gap:15px;
+      margin-top:20px;
+    }
+
+    .save-btn{
+      background:#002970;
+      color:white;
+      border:none;
+      padding:14px 25px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    .whatsapp-btn{
+      background:#25D366;
+      color:white;
+      border:none;
+      padding:14px 25px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+    .close-btn{
+      background:red;
+      color:white;
+      border:none;
+      padding:14px 25px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:16px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    Paytm RA Team (Brand EMI Offline)
+  </div>
+
+  <div class="top-cards">
+
+    <div class="card">
+      <h2>Total Brands</h2>
+      <p>50</p>
+    </div>
+
+    <div class="card">
+      <h2>Completed</h2>
+      <p style="color:green;">28</p>
+    </div>
+
+    <div class="card">
+      <h2>Open Issues</h2>
+      <p style="color:red;">7</p>
+    </div>
+
+    <div class="card">
+      <h2>Pending</h2>
+      <p style="color:gray;">15</p>
+    </div>
+
+  </div>
+
+  <div class="months">
+
+    <h1>Select Month</h1>
+
+    <div class="month-grid">
+
+      <div class="month-btn" onclick="showBrands('January')">January</div>
+      <div class="month-btn" onclick="showBrands('February')">February</div>
+      <div class="month-btn" onclick="showBrands('March')">March</div>
+      <div class="month-btn" onclick="showBrands('April')">April</div>
+      <div class="month-btn" onclick="showBrands('May')">May</div>
+      <div class="month-btn" onclick="showBrands('June')">June</div>
+      <div class="month-btn" onclick="showBrands('July')">July</div>
+      <div class="month-btn" onclick="showBrands('August')">August</div>
+      <div class="month-btn" onclick="showBrands('September')">September</div>
+      <div class="month-btn" onclick="showBrands('October')">October</div>
+      <div class="month-btn" onclick="showBrands('November')">November</div>
+      <div class="month-btn" onclick="showBrands('December')">December</div>
+
+    </div>
+
+  </div>
+
+  <div class="brand-section" id="brandSection">
+
+    <h1 id="monthTitle" style="margin-bottom:20px;color:#002970;"></h1>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Week 1</th>
+          <th>Week 2</th>
+          <th>Week 3</th>
+          <th>Week 4</th>
+        </tr>
+      </thead>
+
+      <tbody id="brandTable">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="popup" id="popup">
+
+    <div class="popup-content">
+
+      <h2 id="popupTitle">Brand Details</h2>
+
+      <div class="section">
+
+        <h3>Maker Section</h3>
+
+        <select>
+          <option>Pending</option>
+          <option>Completed</option>
+          <option>Issue</option>
+        </select>
+
+        <textarea placeholder="Maker Comments"></textarea>
+
+      </div>
+
+      <div class="section">
+
+        <h3>Checker Section</h3>
+
+        <select>
+          <option>Pending</option>
+          <option>Approved</option>
+          <option>Rejected</option>
+        </select>
+
+        <textarea placeholder="Checker Comments"></textarea>
+
+      </div>
+
+      <label>
+        <input type="checkbox">
+        Send WhatsApp Notification
+      </label>
+
+      <div class="buttons">
+
+        <button class="save-btn">
+          Save Changes
+        </button>
+
+        <button class="whatsapp-btn" onclick="sendWhatsApp()">
+          WhatsApp Notify
+        </button>
+
+        <button class="close-btn" onclick="closePopup()">
+          Close
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<script>
+
+const brands = [
+  "Samsung",
+  "Vivo",
+  "Oppo",
+  "Apple",
+  "Xiaomi",
+  "Realme",
+  "OnePlus",
+  "Motorola",
+  "Nokia",
+  "Lava"
+];
+
+function showBrands(month){
+
+  document.getElementById("brandSection").style.display = "block";
+
+  document.getElementById("monthTitle").innerHTML =
+    month + " Brand Status";
+
+  let table = "";
+
+  brands.forEach((brand)=>{
+
+    table += `
+      <tr>
+
+        <td class="brand-name">${brand}</td>
+
+        <td>
+          <button class="status-btn green"
+          onclick="openPopup('${brand}','Week 1')">
+          Open
+          </button>
+        </td>
+
+        <td>
+          <button class="status-btn red"
+          onclick="openPopup('${brand}','Week 2')">
+          Open
+          </button>
+        </td>
+
+        <td>
+          <button class="status-btn gray"
+          onclick="openPopup('${brand}','Week 3')">
+          Open
+          </button>
+        </td>
+
+        <td>
+          <button class="status-btn green"
+          onclick="openPopup('${brand}','Week 4')">
+          Open
+          </button>
+        </td>
+
+      </tr>
+    `;
+
+  });
+
+  document.getElementById("brandTable").innerHTML = table;
+
+}
+
+function openPopup(brand,week){
+
+  document.getElementById("popup").style.display = "flex";
+
+  document.getElementById("popupTitle").innerHTML =
+    brand + " - " + week;
+
+}
+
+function closePopup(){
+
+  document.getElementById("popup").style.display = "none";
+
+}
+
+function sendWhatsApp(){
+
+  let message = "New comment has been added.";
+
+  window.open(
+    "https://wa.me/?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+
+}
+
+</script>
+
+</body>
+</html>
