@@ -383,65 +383,18 @@ style="color:red;">0</p>
 
 <div class="month-grid">
 
-<div class="month-btn"
-onclick="showBrands('January')">
-January
-</div>
-
-<div class="month-btn"
-onclick="showBrands('February')">
-February
-</div>
-
-<div class="month-btn"
-onclick="showBrands('March')">
-March
-</div>
-
-<div class="month-btn"
-onclick="showBrands('April')">
-April
-</div>
-
-<div class="month-btn"
-onclick="showBrands('May')">
-May
-</div>
-
-<div class="month-btn"
-onclick="showBrands('June')">
-June
-</div>
-
-<div class="month-btn"
-onclick="showBrands('July')">
-July
-</div>
-
-<div class="month-btn"
-onclick="showBrands('August')">
-August
-</div>
-
-<div class="month-btn"
-onclick="showBrands('September')">
-September
-</div>
-
-<div class="month-btn"
-onclick="showBrands('October')">
-October
-</div>
-
-<div class="month-btn"
-onclick="showBrands('November')">
-November
-</div>
-
-<div class="month-btn"
-onclick="showBrands('December')">
-December
-</div>
+<div class="month-btn" onclick="showBrands('January')">January</div>
+<div class="month-btn" onclick="showBrands('February')">February</div>
+<div class="month-btn" onclick="showBrands('March')">March</div>
+<div class="month-btn" onclick="showBrands('April')">April</div>
+<div class="month-btn" onclick="showBrands('May')">May</div>
+<div class="month-btn" onclick="showBrands('June')">June</div>
+<div class="month-btn" onclick="showBrands('July')">July</div>
+<div class="month-btn" onclick="showBrands('August')">August</div>
+<div class="month-btn" onclick="showBrands('September')">September</div>
+<div class="month-btn" onclick="showBrands('October')">October</div>
+<div class="month-btn" onclick="showBrands('November')">November</div>
+<div class="month-btn" onclick="showBrands('December')">December</div>
 
 </div>
 
@@ -451,10 +404,7 @@ December
 id="brandSection">
 
 <h1 id="monthTitle"
-style="
-margin-bottom:20px;
-color:#002970;
-">
+style="margin-bottom:20px;color:#002970;">
 </h1>
 
 <div class="top-actions">
@@ -624,9 +574,7 @@ id="responsiblePopup">
 Responsible Persons
 </h2>
 
-<div id="responsibleList">
-
-</div>
+<div id="responsibleList"></div>
 
 <button class="close-btn"
 style="margin-top:20px;"
@@ -649,7 +597,8 @@ import {
 getFirestore,
 doc,
 setDoc,
-getDoc
+getDoc,
+onSnapshot
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -747,13 +696,9 @@ Lava:"Sahil"
 };
 
 let currentMonth = "January";
-
 let currentBrand = "";
-
 let currentWeek = "";
-
 let currentUser = "";
-
 let isEditor = false;
 
 /*
@@ -851,7 +796,6 @@ document.getElementById("currentMonthName")
 .innerHTML = month;
 
 let completed = 0;
-
 let issues = 0;
 
 let table = "";
@@ -860,10 +804,10 @@ for(let brand of brands){
 
 let weekData = {
 
-week1:"gray",
-week2:"gray",
+week1:"green",
+week2:"red",
 week3:"gray",
-week4:"gray"
+week4:"green"
 
 };
 
@@ -971,7 +915,19 @@ document.getElementById("issueCount")
 
 /*
 ========================================================
-OPEN EDIT POPUP
+LIVE REAL TIME UPDATE
+========================================================
+*/
+
+setInterval(()=>{
+
+showBrands(currentMonth);
+
+},3000);
+
+/*
+========================================================
+OPEN POPUP
 ========================================================
 */
 
@@ -981,7 +937,6 @@ week
 ){
 
 currentBrand = brand;
-
 currentWeek = week;
 
 document.getElementById("popup")
@@ -1063,10 +1018,10 @@ currentMonth+"_"+currentBrand
 
 let data = {
 
-week1:"gray",
-week2:"gray",
+week1:"green",
+week2:"red",
 week3:"gray",
-week4:"gray"
+week4:"green"
 
 };
 
@@ -1083,7 +1038,7 @@ data[currentWeek] = finalColor;
 
 await setDoc(docRef,data);
 
-alert("Data Saved");
+alert("Data Saved Successfully");
 
 closePopup();
 
@@ -1143,10 +1098,10 @@ await getDoc(docRef);
 
 let data = {
 
-week1:"gray",
-week2:"gray",
+week1:"green",
+week2:"red",
 week3:"gray",
-week4:"gray"
+week4:"green"
 
 };
 
