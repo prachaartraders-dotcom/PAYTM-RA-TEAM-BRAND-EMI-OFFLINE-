@@ -3,549 +3,640 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+<meta charset="UTF-8" />
 
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0" />
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0" />
 
-  <title>Paytm RA Team Dashboard</title>
+<title>
+Paytm RA Team Dashboard
+</title>
 
-  <style>
+<style>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial,sans-serif;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-    body{
-      background:#f4f8fb;
-      color:#111;
-    }
+body{
+background:#f4f8fb;
+color:#111;
+}
 
-    .header{
-      background:#002970;
-      color:white;
-      padding:15px;
-      text-align:center;
-      font-size:28px;
-      font-weight:bold;
-    }
+.header{
+background:#002970;
+color:white;
+padding:15px;
+}
 
-    .login-box{
-      max-width:400px;
-      margin:50px auto;
-      background:white;
-      padding:30px;
-      border-radius:20px;
-      box-shadow:0 3px 10px rgba(0,0,0,0.1);
-    }
+.header-inner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+}
 
-    .login-box input{
-      width:100%;
-      padding:14px;
-      margin-top:15px;
-      border-radius:10px;
-      border:1px solid #ccc;
-    }
+.header-title{
+font-size:28px;
+font-weight:bold;
+}
 
-    .login-box button{
-      width:100%;
-      padding:14px;
-      margin-top:20px;
-      border:none;
-      border-radius:10px;
-      background:#002970;
-      color:white;
-      font-size:16px;
-      cursor:pointer;
-    }
+.login-btn{
+background:white;
+color:#002970;
+border:none;
+padding:10px 18px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
 
-    .main{
-      display:none;
-    }
+.top-cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+padding:20px;
+}
 
-    .top-cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:15px;
-      padding:20px;
-    }
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
 
-    .card{
-      background:white;
-      padding:20px;
-      border-radius:15px;
-      box-shadow:0 3px 10px rgba(0,0,0,0.1);
-    }
+.card h2{
+color:#666;
+margin-bottom:10px;
+font-size:16px;
+}
 
-    .card h2{
-      color:#666;
-      margin-bottom:10px;
-      font-size:16px;
-    }
+.card p{
+font-size:34px;
+font-weight:bold;
+}
 
-    .card p{
-      font-size:34px;
-      font-weight:bold;
-    }
+.months{
+padding:20px;
+}
 
-    .months{
-      padding:20px;
-    }
+.months h1{
+margin-bottom:20px;
+color:#002970;
+}
 
-    .months h1{
-      margin-bottom:20px;
-      color:#002970;
-    }
+.month-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+}
 
-    .month-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-      gap:15px;
-    }
+.month-btn{
+background:white;
+padding:22px;
+border-radius:12px;
+text-align:center;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
 
-    .month-btn{
-      background:white;
-      padding:22px;
-      border-radius:12px;
-      text-align:center;
-      font-size:20px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:0.3s;
-      box-shadow:0 3px 10px rgba(0,0,0,0.1);
-    }
+.month-btn:hover{
+background:#00baf2;
+color:white;
+}
 
-    .month-btn:hover{
-      background:#00baf2;
-      color:white;
-    }
+.brand-section{
+padding:20px;
+}
 
-    .brand-section{
-      display:none;
-      padding:20px;
-    }
+.top-actions{
+display:flex;
+gap:15px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
 
-    .top-actions{
-      display:flex;
-      gap:15px;
-      margin-bottom:20px;
-      flex-wrap:wrap;
-    }
+.action-btn{
+background:#002970;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+font-size:15px;
+}
 
-    .action-btn{
-      background:#002970;
-      color:white;
-      border:none;
-      padding:12px 20px;
-      border-radius:10px;
-      cursor:pointer;
-      font-size:15px;
-    }
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:15px;
+overflow:hidden;
+}
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      background:white;
-      border-radius:15px;
-      overflow:hidden;
-    }
+th{
+background:#002970;
+color:white;
+padding:15px;
+font-size:15px;
+}
 
-    th{
-      background:#002970;
-      color:white;
-      padding:15px;
-      font-size:15px;
-    }
+td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid #ddd;
+font-size:14px;
+}
 
-    td{
-      padding:15px;
-      text-align:center;
-      border-bottom:1px solid #ddd;
-      font-size:14px;
-    }
+.brand-name{
+font-weight:bold;
+text-align:left;
+}
 
-    .brand-name{
-      font-weight:bold;
-      text-align:left;
-    }
+.status-btn{
+padding:9px 15px;
+border:none;
+border-radius:8px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
 
-    .status-btn{
-      padding:9px 15px;
-      border:none;
-      border-radius:8px;
-      color:white;
-      font-weight:bold;
-      cursor:pointer;
-    }
+.green{
+background:green;
+}
 
-    .green{
-      background:green;
-    }
+.red{
+background:red;
+}
 
-    .red{
-      background:red;
-    }
+.gray{
+background:gray;
+}
 
-    .gray{
-      background:gray;
-    }
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:1000;
+padding:10px;
+}
 
-    .popup{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.5);
-      display:none;
-      justify-content:center;
-      align-items:center;
-      z-index:1000;
-      padding:10px;
-    }
+.popup-content{
+background:white;
+width:95%;
+max-width:650px;
+max-height:90vh;
+overflow-y:auto;
+padding:20px;
+border-radius:20px;
+}
 
-    .popup-content{
-      background:white;
-      width:95%;
-      max-width:650px;
-      max-height:90vh;
-      overflow-y:auto;
-      padding:20px;
-      border-radius:20px;
-    }
+.section{
+margin-bottom:20px;
+padding:18px;
+background:#f4f8fb;
+border-radius:15px;
+}
 
-    .section{
-      margin-bottom:20px;
-      padding:18px;
-      background:#f4f8fb;
-      border-radius:15px;
-    }
+select,
+textarea,
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+border:1px solid #ccc;
+}
 
-    select,textarea{
-      width:100%;
-      padding:12px;
-      margin-top:10px;
-      border-radius:10px;
-      border:1px solid #ccc;
-    }
+textarea{
+height:120px;
+resize:none;
+}
 
-    textarea{
-      height:120px;
-      resize:none;
-    }
+.buttons{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:20px;
+}
 
-    .buttons{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:20px;
-    }
+.save-btn,
+.close-btn,
+.whatsapp-btn{
+border:none;
+padding:12px 20px;
+border-radius:10px;
+color:white;
+cursor:pointer;
+font-size:15px;
+}
 
-    .save-btn,
-    .close-btn,
-    .whatsapp-btn{
-      border:none;
-      padding:12px 20px;
-      border-radius:10px;
-      color:white;
-      cursor:pointer;
-      font-size:15px;
-    }
+.save-btn{
+background:#002970;
+}
 
-    .save-btn{
-      background:#002970;
-    }
+.close-btn{
+background:red;
+}
 
-    .close-btn{
-      background:red;
-    }
+.whatsapp-btn{
+background:#25D366;
+}
 
-    .whatsapp-btn{
-      background:#25D366;
-    }
+.responsible-popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:1200;
+padding:15px;
+}
 
-    .responsible-popup{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.5);
-      display:none;
-      justify-content:center;
-      align-items:center;
-      z-index:1200;
-      padding:15px;
-    }
+.responsible-content{
+background:white;
+width:95%;
+max-width:500px;
+border-radius:20px;
+padding:20px;
+max-height:80vh;
+overflow:auto;
+}
 
-    .responsible-content{
-      background:white;
-      width:95%;
-      max-width:500px;
-      border-radius:20px;
-      padding:20px;
-      max-height:80vh;
-      overflow:auto;
-    }
+.responsible-item{
+padding:12px;
+border-bottom:1px solid #ddd;
+}
 
-    .responsible-item{
-      padding:12px;
-      border-bottom:1px solid #ddd;
-    }
+@media(max-width:768px){
 
-    @media(max-width:768px){
+.header-title{
+font-size:22px;
+}
 
-      .header{
-        font-size:22px;
-      }
+.month-grid{
+grid-template-columns:1fr 1fr;
+}
 
-      .month-grid{
-        grid-template-columns:1fr 1fr;
-      }
+.top-cards{
+grid-template-columns:1fr;
+}
 
-      .top-cards{
-        grid-template-columns:1fr;
-      }
+table{
+min-width:700px;
+}
 
-      table{
-        min-width:700px;
-      }
+.buttons{
+flex-direction:column;
+}
 
-      .buttons{
-        flex-direction:column;
-      }
+.save-btn,
+.close-btn,
+.whatsapp-btn{
+width:100%;
+}
 
-      .save-btn,
-      .close-btn,
-      .whatsapp-btn{
-        width:100%;
-      }
+.card p{
+font-size:28px;
+}
 
-      .card p{
-        font-size:28px;
-      }
+.month-btn{
+font-size:17px;
+padding:18px;
+}
 
-      .month-btn{
-        font-size:17px;
-        padding:18px;
-      }
+}
 
-    }
-
-  </style>
+</style>
 
 </head>
 
 <body>
 
 <div class="header">
-  Paytm RA Team (Brand EMI Offline)
+
+<div class="header-inner">
+
+<div class="header-title">
+Paytm RA Team (Brand EMI Offline)
 </div>
 
-<div class="login-box" id="loginBox">
+<button
+class="login-btn"
+onclick="openLoginPopup()">
+Editor Login
+</button>
 
-  <h2 style="margin-bottom:20px;">
-    Login
-  </h2>
-
-  <input type="email"
-    id="email"
-    placeholder="Enter Email" />
-
-  <input type="password"
-    id="password"
-    placeholder="Enter Password" />
-
-  <button onclick="login()">
-    Login
-  </button>
+</div>
 
 </div>
 
 <div class="main" id="mainSection">
 
-  <div class="top-cards">
+<div class="top-cards">
 
-    <div class="card">
-      <h2>Current Month</h2>
-      <p id="currentMonthName">January</p>
-    </div>
+<div class="card">
+<h2>Current Month</h2>
+<p id="currentMonthName">January</p>
+</div>
 
-    <div class="card">
-      <h2>Total Brands</h2>
-      <p id="totalBrands">10</p>
-    </div>
+<div class="card">
+<h2>Total Brands</h2>
+<p id="totalBrands">10</p>
+</div>
 
-    <div class="card">
-      <h2>Completed</h2>
-      <p id="completedCount" style="color:green;">0</p>
-    </div>
+<div class="card">
+<h2>Completed</h2>
+<p id="completedCount"
+style="color:green;">0</p>
+</div>
 
-    <div class="card">
-      <h2>Open Issues</h2>
-      <p id="issueCount" style="color:red;">0</p>
-    </div>
-
-  </div>
-
-  <div class="months">
-
-    <h1>Select Month</h1>
-
-    <div class="month-grid">
-
-      <div class="month-btn" onclick="showBrands('January')">January</div>
-      <div class="month-btn" onclick="showBrands('February')">February</div>
-      <div class="month-btn" onclick="showBrands('March')">March</div>
-      <div class="month-btn" onclick="showBrands('April')">April</div>
-      <div class="month-btn" onclick="showBrands('May')">May</div>
-      <div class="month-btn" onclick="showBrands('June')">June</div>
-      <div class="month-btn" onclick="showBrands('July')">July</div>
-      <div class="month-btn" onclick="showBrands('August')">August</div>
-      <div class="month-btn" onclick="showBrands('September')">September</div>
-      <div class="month-btn" onclick="showBrands('October')">October</div>
-      <div class="month-btn" onclick="showBrands('November')">November</div>
-      <div class="month-btn" onclick="showBrands('December')">December</div>
-
-    </div>
-
-  </div>
-
-  <div class="brand-section" id="brandSection">
-
-    <h1 id="monthTitle"
-      style="margin-bottom:20px;color:#002970;">
-    </h1>
-
-    <div class="top-actions">
-
-      <button class="action-btn"
-        onclick="downloadSummary()">
-        Download Summary
-      </button>
-
-      <button class="action-btn"
-        onclick="openResponsiblePopup()">
-        Responsible Persons
-      </button>
-
-    </div>
-
-    <div style="overflow-x:auto;">
-
-      <table>
-
-        <thead>
-
-          <tr>
-            <th>Brand</th>
-            <th>Week 1</th>
-            <th>Week 2</th>
-            <th>Week 3</th>
-            <th>Week 4</th>
-          </tr>
-
-        </thead>
-
-        <tbody id="brandTable">
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
+<div class="card">
+<h2>Open Issues</h2>
+<p id="issueCount"
+style="color:red;">0</p>
+</div>
 
 </div>
 
-<div class="popup" id="popup">
+<div class="months">
 
-  <div class="popup-content">
+<h1>Select Month</h1>
 
-    <h2 id="popupTitle"></h2>
+<div class="month-grid">
 
-    <div class="section">
+<div class="month-btn"
+onclick="showBrands('January')">
+January
+</div>
 
-      <h3>Maker Section</h3>
+<div class="month-btn"
+onclick="showBrands('February')">
+February
+</div>
 
-      <select id="makerStatus">
-        <option>Pending</option>
-        <option>Completed</option>
-        <option>Issue</option>
-      </select>
+<div class="month-btn"
+onclick="showBrands('March')">
+March
+</div>
 
-      <textarea id="makerComment"
-        placeholder="Maker Comments">
-      </textarea>
+<div class="month-btn"
+onclick="showBrands('April')">
+April
+</div>
 
-    </div>
+<div class="month-btn"
+onclick="showBrands('May')">
+May
+</div>
 
-    <div class="section">
+<div class="month-btn"
+onclick="showBrands('June')">
+June
+</div>
 
-      <h3>Checker Section</h3>
+<div class="month-btn"
+onclick="showBrands('July')">
+July
+</div>
 
-      <select id="checkerStatus">
-        <option>Pending</option>
-        <option>Approved</option>
-        <option>Rejected</option>
-      </select>
+<div class="month-btn"
+onclick="showBrands('August')">
+August
+</div>
 
-      <textarea id="checkerComment"
-        placeholder="Checker Comments">
-      </textarea>
+<div class="month-btn"
+onclick="showBrands('September')">
+September
+</div>
 
-    </div>
+<div class="month-btn"
+onclick="showBrands('October')">
+October
+</div>
 
-    <label>
-      <input type="checkbox" id="whatsappCheck">
-      Send WhatsApp Notification
-    </label>
+<div class="month-btn"
+onclick="showBrands('November')">
+November
+</div>
 
-    <div class="buttons">
-
-      <button class="save-btn"
-        onclick="saveChanges()">
-        Save Changes
-      </button>
-
-      <button class="whatsapp-btn"
-        onclick="sendWhatsApp()">
-        WhatsApp Notify
-      </button>
-
-      <button class="close-btn"
-        onclick="closePopup()">
-        Close
-      </button>
-
-    </div>
-
-  </div>
+<div class="month-btn"
+onclick="showBrands('December')">
+December
+</div>
 
 </div>
+
+</div>
+
+<div class="brand-section"
+id="brandSection">
+
+<h1 id="monthTitle"
+style="
+margin-bottom:20px;
+color:#002970;
+">
+</h1>
+
+<div class="top-actions">
+
+<button class="action-btn"
+onclick="downloadSummary()">
+Download Summary
+</button>
+
+<button class="action-btn"
+onclick="openResponsiblePopup()">
+Responsible Persons
+</button>
+
+</div>
+
+<div style="overflow-x:auto;">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Brand</th>
+<th>Week 1</th>
+<th>Week 2</th>
+<th>Week 3</th>
+<th>Week 4</th>
+</tr>
+
+</thead>
+
+<tbody id="brandTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- LOGIN POPUP -->
+
+<div class="popup"
+id="loginPopup">
+
+<div class="popup-content">
+
+<h2 style="margin-bottom:20px;">
+Editor Login
+</h2>
+
+<input
+type="email"
+id="email"
+placeholder="Enter Email">
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<div class="buttons">
+
+<button class="save-btn"
+onclick="login()">
+Login
+</button>
+
+<button class="close-btn"
+onclick="closeLoginPopup()">
+Close
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- EDIT POPUP -->
+
+<div class="popup"
+id="popup">
+
+<div class="popup-content">
+
+<h2 id="popupTitle"></h2>
+
+<div class="section">
+
+<h3>Maker Section</h3>
+
+<select id="makerStatus">
+<option>Pending</option>
+<option>Completed</option>
+<option>Issue</option>
+</select>
+
+<textarea
+id="makerComment"
+placeholder="Maker Comments">
+</textarea>
+
+</div>
+
+<div class="section">
+
+<h3>Checker Section</h3>
+
+<select id="checkerStatus">
+<option>Pending</option>
+<option>Approved</option>
+<option>Rejected</option>
+</select>
+
+<textarea
+id="checkerComment"
+placeholder="Checker Comments">
+</textarea>
+
+</div>
+
+<label>
+
+<input type="checkbox"
+id="whatsappCheck">
+
+Send WhatsApp Notification
+
+</label>
+
+<div class="buttons">
+
+<button class="save-btn"
+onclick="saveChanges()">
+Save Changes
+</button>
+
+<button class="whatsapp-btn"
+onclick="sendWhatsApp()">
+WhatsApp Notify
+</button>
+
+<button class="close-btn"
+onclick="closePopup()">
+Close
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RESPONSIBLE PERSONS -->
 
 <div class="responsible-popup"
-  id="responsiblePopup">
+id="responsiblePopup">
 
-  <div class="responsible-content">
+<div class="responsible-content">
 
-    <h2 style="margin-bottom:20px;">
-      Responsible Persons
-    </h2>
+<h2 style="margin-bottom:20px;">
+Responsible Persons
+</h2>
 
-    <div id="responsibleList"></div>
+<div id="responsibleList">
 
-    <button class="close-btn"
-      style="margin-top:20px;"
-      onclick="closeResponsiblePopup()">
-      Close
-    </button>
+</div>
 
-  </div>
+<button class="close-btn"
+style="margin-top:20px;"
+onclick="closeResponsiblePopup()">
+
+Close
+
+</button>
+
+</div>
 
 </div>
 
@@ -555,76 +646,103 @@ import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc
+getFirestore,
+doc,
+setDoc,
+getDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
-  getAuth,
-  signInWithEmailAndPassword
+getAuth,
+signInWithEmailAndPassword
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+/*
+========================================================
+PASTE YOUR FIREBASE CONFIG HERE
+========================================================
+*/
+
 const firebaseConfig = {
 
-  apiKey: "AIzaSyAltSuSXDoQhFlnksBZwcs1KIwdz9OBFpI",
+apiKey: "YOUR_API_KEY",
 
-  authDomain: "paytm-ra-project.firebaseapp.com",
+authDomain: "YOUR_AUTH_DOMAIN",
 
-  projectId: "paytm-ra-project",
+projectId: "YOUR_PROJECT_ID",
 
-  storageBucket: "paytm-ra-project.firebasestorage.app",
+storageBucket: "YOUR_STORAGE_BUCKET",
 
-  messagingSenderId: "473256685575",
+messagingSenderId: "YOUR_SENDER_ID",
 
-  appId: "1:473256685575:web:774aeef63ad78f60be3aa2"
+appId: "YOUR_APP_ID"
 
 };
 
-const app = initializeApp(firebaseConfig);
+const app =
+initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+const db =
+getFirestore(app);
 
-const auth = getAuth(app);
+const auth =
+getAuth(app);
+
+/*
+========================================================
+ADD EDITOR EMAILS HERE
+========================================================
+*/
 
 const allowedEditors = [
 
-  "sumit@gmail.com",
-  "rahul@gmail.com",
-  "amit@gmail.com"
+"sumit@gmail.com",
+"rahul@gmail.com",
+"amit@gmail.com"
 
 ];
+
+/*
+========================================================
+ADD BRANDS HERE
+========================================================
+*/
 
 const brands = [
 
-  "Samsung",
-  "Vivo",
-  "Oppo",
-  "Apple",
-  "Xiaomi",
-  "Realme",
-  "OnePlus",
-  "Motorola",
-  "Nokia",
-  "Lava"
+"Samsung",
+"Vivo",
+"Oppo",
+"Apple",
+"Xiaomi",
+"Realme",
+"OnePlus",
+"Motorola",
+"Nokia",
+"Lava"
 
 ];
 
+/*
+========================================================
+RESPONSIBLE PERSONS
+========================================================
+*/
+
 const responsiblePersons = {
 
-  Samsung:"Amit",
-  Vivo:"Rahul",
-  Oppo:"Rahul",
-  Apple:"Sumit Kataria",
-  Xiaomi:"Deepak",
-  Realme:"Karan",
-  OnePlus:"Rohit",
-  Motorola:"Ankit",
-  Nokia:"Vikas",
-  Lava:"Sahil"
+Samsung:"Amit",
+Vivo:"Rahul",
+Oppo:"Rahul",
+Apple:"Sumit Kataria",
+Xiaomi:"Deepak",
+Realme:"Karan",
+OnePlus:"Rohit",
+Motorola:"Ankit",
+Nokia:"Vikas",
+Lava:"Sahil"
 
 };
 
@@ -636,345 +754,493 @@ let currentWeek = "";
 
 let currentUser = "";
 
-window.login = async function(){
+let isEditor = false;
 
-  const email =
-    document.getElementById("email").value;
+/*
+========================================================
+LOGIN POPUP
+========================================================
+*/
 
-  const password =
-    document.getElementById("password").value;
+window.openLoginPopup = function(){
 
-  try{
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    currentUser = email;
-
-    document.getElementById("loginBox")
-      .style.display = "none";
-
-    document.getElementById("mainSection")
-      .style.display = "block";
-
-    showBrands("January");
-
-  }
-
-  catch(error){
-
-    alert(error.message);
-
-  }
+document.getElementById("loginPopup")
+.style.display = "flex";
 
 };
+
+window.closeLoginPopup = function(){
+
+document.getElementById("loginPopup")
+.style.display = "none";
+
+};
+
+/*
+========================================================
+LOGIN
+========================================================
+*/
+
+window.login = async function(){
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+currentUser = email;
+
+if(
+allowedEditors.includes(email)
+){
+
+isEditor = true;
+
+alert("Editor Login Successful");
+
+}
+
+else{
+
+isEditor = false;
+
+alert("View Only Access");
+
+}
+
+closeLoginPopup();
+
+}
+
+catch(error){
+
+alert(error.message);
+
+}
+
+};
+
+/*
+========================================================
+SHOW BRANDS
+========================================================
+*/
 
 window.showBrands = async function(month){
 
-  currentMonth = month;
+currentMonth = month;
 
-  document.getElementById("brandSection")
-    .style.display = "block";
+document.getElementById("brandSection")
+.style.display = "block";
 
-  document.getElementById("monthTitle")
-    .innerHTML =
-      month + " Brand Status";
+document.getElementById("monthTitle")
+.innerHTML =
+month + " Brand Status";
 
-  document.getElementById("currentMonthName")
-    .innerHTML = month;
+document.getElementById("currentMonthName")
+.innerHTML = month;
 
-  let completed = 0;
+let completed = 0;
 
-  let issues = 0;
+let issues = 0;
 
-  let table = "";
+let table = "";
 
-  for(let brand of brands){
+for(let brand of brands){
 
-    let weekData = {
-      week1:"gray",
-      week2:"gray",
-      week3:"gray",
-      week4:"gray"
-    };
+let weekData = {
 
-    const docRef =
-      doc(db,"brands",month+"_"+brand);
-
-    const docSnap =
-      await getDoc(docRef);
-
-    if(docSnap.exists()){
-
-      weekData = docSnap.data();
-
-    }
-
-    Object.values(weekData)
-    .forEach((v)=>{
-
-      if(v==="green") completed++;
-
-      if(v==="red") issues++;
-
-    });
-
-    table += `
-
-      <tr>
-
-        <td class="brand-name">
-          ${brand}
-          <br>
-          <small>
-            ${responsiblePersons[brand]}
-          </small>
-        </td>
-
-        <td>
-          <button class="status-btn ${weekData.week1}"
-          onclick="openPopup('${brand}','week1')">
-          Open
-          </button>
-        </td>
-
-        <td>
-          <button class="status-btn ${weekData.week2}"
-          onclick="openPopup('${brand}','week2')">
-          Open
-          </button>
-        </td>
-
-        <td>
-          <button class="status-btn ${weekData.week3}"
-          onclick="openPopup('${brand}','week3')">
-          Open
-          </button>
-        </td>
-
-        <td>
-          <button class="status-btn ${weekData.week4}"
-          onclick="openPopup('${brand}','week4')">
-          Open
-          </button>
-        </td>
-
-      </tr>
-
-    `;
-
-  }
-
-  document.getElementById("brandTable")
-    .innerHTML = table;
-
-  document.getElementById("completedCount")
-    .innerHTML = completed;
-
-  document.getElementById("issueCount")
-    .innerHTML = issues;
+week1:"gray",
+week2:"gray",
+week3:"gray",
+week4:"gray"
 
 };
 
-window.openPopup = async function(brand,week){
+const docRef =
+doc(db,"brands",month+"_"+brand);
 
-  currentBrand = brand;
+const docSnap =
+await getDoc(docRef);
 
-  currentWeek = week;
+if(docSnap.exists()){
 
-  document.getElementById("popup")
-    .style.display = "flex";
+weekData = docSnap.data();
 
-  document.getElementById("popupTitle")
-    .innerHTML =
-      brand + " - " + week;
+}
+
+Object.values(weekData)
+.forEach((v)=>{
+
+if(v==="green") completed++;
+
+if(v==="red") issues++;
+
+});
+
+table += `
+
+<tr>
+
+<td class="brand-name">
+
+${brand}
+
+<br>
+
+<small>
+${responsiblePersons[brand]}
+</small>
+
+</td>
+
+<td>
+
+<button
+class="status-btn ${weekData.week1}"
+onclick="openPopup('${brand}','week1')">
+
+Open
+
+</button>
+
+</td>
+
+<td>
+
+<button
+class="status-btn ${weekData.week2}"
+onclick="openPopup('${brand}','week2')">
+
+Open
+
+</button>
+
+</td>
+
+<td>
+
+<button
+class="status-btn ${weekData.week3}"
+onclick="openPopup('${brand}','week3')">
+
+Open
+
+</button>
+
+</td>
+
+<td>
+
+<button
+class="status-btn ${weekData.week4}"
+onclick="openPopup('${brand}','week4')">
+
+Open
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}
+
+document.getElementById("brandTable")
+.innerHTML = table;
+
+document.getElementById("completedCount")
+.innerHTML = completed;
+
+document.getElementById("issueCount")
+.innerHTML = issues;
 
 };
+
+/*
+========================================================
+OPEN EDIT POPUP
+========================================================
+*/
+
+window.openPopup = async function(
+brand,
+week
+){
+
+currentBrand = brand;
+
+currentWeek = week;
+
+document.getElementById("popup")
+.style.display = "flex";
+
+document.getElementById("popupTitle")
+.innerHTML =
+brand + " - " + week;
+
+};
+
+/*
+========================================================
+CLOSE POPUP
+========================================================
+*/
 
 window.closePopup = function(){
 
-  document.getElementById("popup")
-    .style.display = "none";
+document.getElementById("popup")
+.style.display = "none";
 
 };
+
+/*
+========================================================
+SAVE CHANGES
+========================================================
+*/
 
 window.saveChanges = async function(){
 
-  if(!allowedEditors.includes(currentUser)){
+if(!isEditor){
 
-    alert("View Only Access");
+alert(
+"Only Editors Can Edit Data"
+);
 
-    return;
+return;
 
-  }
+}
 
-  const makerStatus =
-    document.getElementById("makerStatus").value;
+const makerStatus =
+document.getElementById("makerStatus")
+.value;
 
-  const checkerStatus =
-    document.getElementById("checkerStatus").value;
+const checkerStatus =
+document.getElementById("checkerStatus")
+.value;
 
-  let finalColor = "gray";
+let finalColor = "gray";
 
-  if(
-    makerStatus==="Completed" &&
-    checkerStatus==="Approved"
-  ){
+if(
+makerStatus==="Completed"
+&&
+checkerStatus==="Approved"
+){
 
-    finalColor = "green";
+finalColor = "green";
 
-  }
+}
 
-  if(
-    makerStatus==="Issue" ||
-    checkerStatus==="Rejected"
-  ){
+if(
+makerStatus==="Issue"
+||
+checkerStatus==="Rejected"
+){
 
-    finalColor = "red";
+finalColor = "red";
 
-  }
+}
 
-  const docRef =
-    doc(db,"brands",
-    currentMonth+"_"+currentBrand);
+const docRef =
+doc(
+db,
+"brands",
+currentMonth+"_"+currentBrand
+);
 
-  let data = {
-    week1:"gray",
-    week2:"gray",
-    week3:"gray",
-    week4:"gray"
-  };
+let data = {
 
-  const docSnap =
-    await getDoc(docRef);
-
-  if(docSnap.exists()){
-
-    data = docSnap.data();
-
-  }
-
-  data[currentWeek] = finalColor;
-
-  await setDoc(docRef,data);
-
-  alert("Data Saved");
-
-  closePopup();
-
-  showBrands(currentMonth);
+week1:"gray",
+week2:"gray",
+week3:"gray",
+week4:"gray"
 
 };
+
+const docSnap =
+await getDoc(docRef);
+
+if(docSnap.exists()){
+
+data = docSnap.data();
+
+}
+
+data[currentWeek] = finalColor;
+
+await setDoc(docRef,data);
+
+alert("Data Saved");
+
+closePopup();
+
+showBrands(currentMonth);
+
+};
+
+/*
+========================================================
+WHATSAPP
+========================================================
+*/
 
 window.sendWhatsApp = function(){
 
-  let message =
-    "New update added for "
-    + currentBrand +
-    " " +
-    currentWeek;
+let message =
+"New update added for "
++
+currentBrand
++
+" "
++
+currentWeek;
 
-  window.open(
-    "https://wa.me/?text="
-    + encodeURIComponent(message),
-    "_blank"
-  );
-
-};
-
-window.downloadSummary = async function(){
-
-  let csv =
-    "Brand,Week1,Week2,Week3,Week4\n";
-
-  for(let brand of brands){
-
-    const docRef =
-      doc(db,"brands",
-      currentMonth+"_"+brand);
-
-    const docSnap =
-      await getDoc(docRef);
-
-    let data = {
-      week1:"gray",
-      week2:"gray",
-      week3:"gray",
-      week4:"gray"
-    };
-
-    if(docSnap.exists()){
-
-      data = docSnap.data();
-
-    }
-
-    csv +=
-      `${brand},
-      ${data.week1},
-      ${data.week2},
-      ${data.week3},
-      ${data.week4}\n`;
-
-  }
-
-  const blob =
-    new Blob([csv],
-    {type:"text/csv"});
-
-  const a =
-    document.createElement("a");
-
-  a.href =
-    URL.createObjectURL(blob);
-
-  a.download =
-    currentMonth+"_summary.csv";
-
-  a.click();
+window.open(
+"https://wa.me/?text="
++
+encodeURIComponent(message),
+"_blank"
+);
 
 };
 
-window.openResponsiblePopup = function(){
+/*
+========================================================
+DOWNLOAD SUMMARY
+========================================================
+*/
 
-  document.getElementById("responsiblePopup")
-    .style.display = "flex";
+window.downloadSummary =
+async function(){
 
-  let html = "";
+let csv =
+"Brand,Week1,Week2,Week3,Week4\n";
 
-  Object.keys(responsiblePersons)
-  .forEach((brand)=>{
+for(let brand of brands){
 
-    html += `
+const docRef =
+doc(
+db,
+"brands",
+currentMonth+"_"+brand
+);
 
-      <div class="responsible-item">
+const docSnap =
+await getDoc(docRef);
 
-        <b>${brand}</b>
+let data = {
 
-        <br>
+week1:"gray",
+week2:"gray",
+week3:"gray",
+week4:"gray"
 
-        ${responsiblePersons[brand]}
+};
 
-      </div>
+if(docSnap.exists()){
 
-    `;
+data = docSnap.data();
 
-  });
+}
 
-  document.getElementById("responsibleList")
-    .innerHTML = html;
+csv +=
+`${brand},
+${data.week1},
+${data.week2},
+${data.week3},
+${data.week4}\n`;
+
+}
+
+const blob =
+new Blob(
+[csv],
+{type:"text/csv"}
+);
+
+const a =
+document.createElement("a");
+
+a.href =
+URL.createObjectURL(blob);
+
+a.download =
+currentMonth+"_summary.csv";
+
+a.click();
 
 };
 
-window.closeResponsiblePopup = function(){
+/*
+========================================================
+RESPONSIBLE PERSONS
+========================================================
+*/
 
-  document.getElementById("responsiblePopup")
-    .style.display = "none";
+window.openResponsiblePopup =
+function(){
+
+document.getElementById(
+"responsiblePopup"
+).style.display = "flex";
+
+let html = "";
+
+Object.keys(
+responsiblePersons
+).forEach((brand)=>{
+
+html += `
+
+<div class="responsible-item">
+
+<b>${brand}</b>
+
+<br>
+
+${responsiblePersons[brand]}
+
+</div>
+
+`;
+
+});
+
+document.getElementById(
+"responsibleList"
+).innerHTML = html;
 
 };
+
+window.closeResponsiblePopup =
+function(){
+
+document.getElementById(
+"responsiblePopup"
+).style.display = "none";
+
+};
+
+/*
+========================================================
+DEFAULT LOAD
+========================================================
+*/
+
+showBrands("January");
 
 </script>
 
