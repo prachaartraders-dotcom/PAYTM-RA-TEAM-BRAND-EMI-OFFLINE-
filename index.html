@@ -3,10 +3,10 @@
 
 <head>
 
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+content="width=device-width, initial-scale=1.0" />
 
 <title>
 Paytm RA Team Dashboard
@@ -349,7 +349,7 @@ Editor Login
 
 </div>
 
-<div class="main">
+<div class="main" id="mainSection">
 
 <div class="top-cards">
 
@@ -400,11 +400,11 @@ style="color:red;">0</p>
 
 </div>
 
-<div class="brand-section">
+<div class="brand-section"
+id="brandSection">
 
 <h1 id="monthTitle"
 style="margin-bottom:20px;color:#002970;">
-January Brand Status
 </h1>
 
 <div class="top-actions">
@@ -531,6 +531,15 @@ placeholder="Checker Comments">
 
 </div>
 
+<label>
+
+<input type="checkbox"
+id="whatsappCheck">
+
+Send WhatsApp Notification
+
+</label>
+
 <div class="buttons">
 
 <button class="save-btn"
@@ -588,7 +597,8 @@ import {
 getFirestore,
 doc,
 setDoc,
-getDoc
+getDoc,
+onSnapshot
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -606,17 +616,12 @@ PASTE YOUR FIREBASE CONFIG HERE
 
 const firebaseConfig = {
 
-apiKey: "YOUR_API_KEY",
-
-authDomain: "YOUR_AUTH_DOMAIN",
-
-projectId: "YOUR_PROJECT_ID",
-
-storageBucket: "YOUR_STORAGE_BUCKET",
-
-messagingSenderId: "YOUR_SENDER_ID",
-
-appId: "YOUR_APP_ID"
+apiKey: "AIzaSyAltSuSXDoQhFlnksBZwcs1KIwdz9OBFpI",
+  authDomain: "paytm-ra-project.firebaseapp.com",
+  projectId: "paytm-ra-project",
+  storageBucket: "paytm-ra-project.firebasestorage.app",
+  messagingSenderId: "473256685575",
+  appId: "1:473256685575:web:774aeef63ad78f60be3aa2"
 
 };
 
@@ -688,6 +693,7 @@ Lava:"Sahil"
 let currentMonth = "January";
 let currentBrand = "";
 let currentWeek = "";
+let currentUser = "";
 let isEditor = false;
 
 /*
@@ -732,6 +738,8 @@ email,
 password
 );
 
+currentUser = email;
+
 if(
 allowedEditors.includes(email)
 ){
@@ -772,6 +780,9 @@ window.showBrands = async function(month){
 
 currentMonth = month;
 
+document.getElementById("brandSection")
+.style.display = "block";
+
 document.getElementById("monthTitle")
 .innerHTML =
 month + " Brand Status";
@@ -788,10 +799,10 @@ for(let brand of brands){
 
 let weekData = {
 
-week1:"gray",
-week2:"gray",
+week1:"green",
+week2:"red",
 week3:"gray",
-week4:"gray"
+week4:"green"
 
 };
 
@@ -833,35 +844,51 @@ ${responsiblePersons[brand]}
 </td>
 
 <td>
+
 <button
 class="status-btn ${weekData.week1}"
 onclick="openPopup('${brand}','week1')">
+
 Open
+
 </button>
+
 </td>
 
 <td>
+
 <button
 class="status-btn ${weekData.week2}"
 onclick="openPopup('${brand}','week2')">
+
 Open
+
 </button>
+
 </td>
 
 <td>
+
 <button
 class="status-btn ${weekData.week3}"
 onclick="openPopup('${brand}','week3')">
+
 Open
+
 </button>
+
 </td>
 
 <td>
+
 <button
 class="status-btn ${weekData.week4}"
 onclick="openPopup('${brand}','week4')">
+
 Open
+
 </button>
+
 </td>
 
 </tr>
@@ -883,7 +910,7 @@ document.getElementById("issueCount")
 
 /*
 ========================================================
-AUTO LIVE REFRESH
+LIVE REAL TIME UPDATE
 ========================================================
 */
 
@@ -899,7 +926,7 @@ OPEN POPUP
 ========================================================
 */
 
-window.openPopup = function(
+window.openPopup = async function(
 brand,
 week
 ){
@@ -986,10 +1013,10 @@ currentMonth+"_"+currentBrand
 
 let data = {
 
-week1:"gray",
-week2:"gray",
+week1:"green",
+week2:"red",
 week3:"gray",
-week4:"gray"
+week4:"green"
 
 };
 
@@ -1066,10 +1093,10 @@ await getDoc(docRef);
 
 let data = {
 
-week1:"gray",
-week2:"gray",
+week1:"green",
+week2:"red",
 week3:"gray",
-week4:"gray"
+week4:"green"
 
 };
 
