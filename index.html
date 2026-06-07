@@ -149,6 +149,7 @@ textarea{height:100px;resize:none;}
       <table class="brand-table">
         <thead>
           <tr>
+            <th style="text-align:center;padding:13px 8px;">#</th>
             <th style="text-align:left;padding-left:12px;">Brand</th>
             <th>Week 1</th>
             <th>Week 2</th>
@@ -157,7 +158,7 @@ textarea{height:100px;resize:none;}
           </tr>
         </thead>
         <tbody id="brandTable">
-          <tr><td colspan="5" class="loading-msg">Loading data...</td></tr>
+          <tr><td colspan="6" class="loading-msg">Loading data...</td></tr>
         </tbody>
       </table>
     </div>
@@ -301,7 +302,7 @@ window.showBrands = async function(month) {
   document.getElementById("currentMonthName").textContent = month;
   document.getElementById("monthTitle").textContent = month + " Brand Status";
   highlightMonth(month);
-  document.getElementById("brandTable").innerHTML = '<tr><td colspan="5" class="loading-msg">Loading...</td></tr>';
+  document.getElementById("brandTable").innerHTML = '<tr><td colspan="6" class="loading-msg">Loading...</td></tr>';
 
   const allColors = [];
   let html = "";
@@ -320,6 +321,7 @@ window.showBrands = async function(month) {
     allColors.push(c1, c2, c3, c4);
 
     html += `<tr>
+      <td style="text-align:center;font-weight:bold;color:#002970;font-size:13px;">${brands.indexOf(brand)+1}</td>
       <td class="brand-name">${brand}</td>
       <td><button class="status-btn ${c1}" onclick="openPopup('${brand}','week1')">Details</button></td>
       <td><button class="status-btn ${c2}" onclick="openPopup('${brand}','week2')">Details</button></td>
@@ -332,8 +334,7 @@ window.showBrands = async function(month) {
   updateCounts(allColors);
 };
 
-/* ── AUTO REFRESH every 10s (safer for mobile) ── */
-setInterval(() => showBrands(currentMonth), 10000);
+/* Auto refresh removed — page refreshes only on manual reload or month change */
 
 /* ── OPEN POPUP ── */
 window.openPopup = async function(brand, week) {
