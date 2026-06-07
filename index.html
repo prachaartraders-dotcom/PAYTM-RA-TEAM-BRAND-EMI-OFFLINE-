@@ -199,7 +199,7 @@ textarea{height:100px;resize:none;}
         <option value="Not Started">Not Started</option>
         <option value="In Progress">In Progress</option>
         <option value="Approved">Approved</option>
-        <option value="Rejected">Rejected</option>
+        <option value="Issue">Issue</option>
       </select>
       <textarea id="checkerComment" placeholder="Checker Comments"></textarea>
     </div>
@@ -232,14 +232,11 @@ const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 const auth = getAuth(app);
 
-const allowedEditors = ["sumit@gmail.com","rahul@gmail.com","amit@gmail.com"];
+const allowedEditors = ["sumit@gmail.com","rahul@gmail.com","amit@gmail.com","gaurav11official@gmail.com","gaurav2.joshi@ppstlp.com"];
 
 const brands = ["Samsung","Vivo","Oppo","Apple","Xiaomi","Realme","OnePlus","Motorola","Nokia","Lava"];
 
-const responsiblePersons = {
-  Samsung:"Amit", Vivo:"Rahul", Oppo:"Rahul", Apple:"Sumit Kataria",
-  Xiaomi:"Deepak", Realme:"Karan", OnePlus:"Rohit", Motorola:"Ankit", Nokia:"Vikas", Lava:"Sahil"
-};
+
 
 let currentMonth = "January";
 let currentBrand = "";
@@ -248,7 +245,7 @@ let isEditor     = false;
 
 /* ── COLOUR LOGIC ── */
 function computeColor(maker, checker) {
-  if (maker === "Issue" || checker === "Rejected") return "red-btn";
+  if (maker === "Issue" || checker === "Issue") return "red-btn";
   if (maker === "Completed" && checker === "Approved") return "green-btn";
   if (maker === "In Progress" || maker === "Completed" || checker === "In Progress" || checker === "Approved") return "yellow-btn";
   return "grey-btn";
@@ -392,7 +389,8 @@ window.saveChanges = async function() {
 
 /* ── WHATSAPP ── */
 window.sendWhatsApp = function() {
-  window.open("https://wa.me/?text=" + encodeURIComponent("Update for " + currentBrand + " " + currentWeek), "_blank");
+  const msg = encodeURIComponent("Update: " + currentBrand + " - " + currentWeek + " has been updated.");
+  window.open("https://wa.me/HG6XjeRTf3s3A3xSZYoDRF?text=" + msg, "_blank");
 };
 
 /* ── DOWNLOAD ── */
